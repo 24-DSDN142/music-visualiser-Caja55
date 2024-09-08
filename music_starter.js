@@ -27,8 +27,8 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   let sunLerpAmount = min(elapsedSeconds / timeForSunToMove, 1); 
 
   // Transition from dark to light blue
-  let currentBackground = lerpColor(MyDarkBlue, MyLightBlue, lerpAmount);
-  background(currentBackground);
+  let currentBackground1 = lerpColor(MyDarkBlue, MyLightBlue, lerpAmount);
+  background(currentBackground1);
 
   let lineColour = lerpColor(MyDarkBlueL, MyLightBlueL, lerpAmount);
 
@@ -82,26 +82,26 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     vertex(0, 300); // Start from the bottom-left corner
 
     // Map drum intensity to amplitude of wave
-    let amplitude = map(drum, 0, 100, 0, 200); // amplitude for big bumps
+    let amplitude1 = map(drum, 0, 100, 0, 200); // amplitude for big bumps
 
     // Smaller amplitude (every second bump)
-    let smallerAmplitude = amplitude * 0.5;
+    let smallerAmplitude1 = amplitude1 * 0.5;
 
     // Width of each bump
-    let segmentWidth = 900 / 3; // canvas width, number of bumps
+    let segmentWidth1 = 900 / 3; // canvas width, number of bumps
 
     // Loop to create bumps
     for (let i = 0; i < 3; i++) {
-      let x1 = segmentWidth * (i + 0.5); // Midpoint of each bump 
-      let x2 = segmentWidth * (i + 1);   // End point of each bump
+      let x1 = segmentWidth1 * (i + 0.5); // Midpoint of each bump 
+      let x2 = segmentWidth1 * (i + 1);   // End point of each bump
 
       // Alternate amplitude for every second bump
-      let currentAmplitude = (i % 2 === 1) ? smallerAmplitude : amplitude;
+      let currentAmplitude1 = (i % 2 === 1) ? smallerAmplitude1 : amplitude1;
 
       // BezierVertex to create the bump
       bezierVertex(
-        x1 - segmentWidth / 4, 300 - currentAmplitude, // Control point above
-        x1 + segmentWidth / 4, 300 + currentAmplitude, // Control point below
+        x1 - segmentWidth1 / 4, 300 - currentAmplitude1, // Control point above
+        x1 + segmentWidth1 / 4, 300 + currentAmplitude1, // Control point below
         x2, 300                                 // End point on baseline
       );
     }
@@ -120,26 +120,26 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     vertex(0, 350); // Moved up slightly from 400 to 350
 
     // Map drum intensity to amplitude of wave
-    let amplitude = map(drum, 0, 100, 0, 100); // amplitude for big bumps
+    let amplitude2 = map(drum, 0, 100, 0, 100); // amplitude for big bumps
 
     // Smaller amplitude (every second bump)
-    let smallerAmplitude = amplitude * 0.8; // change wave shape/size
+    let smallerAmplitude2 = amplitude2 * 0.8; // change wave shape/size
 
     // Width of each bump
-    let segmentWidth = 900 / 2; // canvas width, number of bumps
+    let segmentWidth2 = 900 / 2; // canvas width, number of bumps
 
     // Loop to create bumps
     for (let i = 0; i < 2; i++) {
-      let x1 = segmentWidth * (i + 0.5); // Midpoint of each bump 
-      let x2 = segmentWidth * (i + 1);   // End point of each bump
+      let x1 = segmentWidth2 * (i + 0.5); // Midpoint of each bump 
+      let x2 = segmentWidth2 * (i + 1);   // End point of each bump
 
       // Alternate amplitude for every second bump
-      let currentAmplitude = (i % 2 === 1) ? smallerAmplitude : amplitude;
+      let currentAmplitude2 = (i % 2 === 1) ? smallerAmplitude2 : amplitude2;
 
       // BezierVertex to create the bump
       bezierVertex(
-        x1 - segmentWidth / 4, 350 - currentAmplitude, // Control point above
-        x1 + segmentWidth / 4, 350 + currentAmplitude, // Control point below
+        x1 - segmentWidth2 / 4, 350 - currentAmplitude2, // Control point above
+        x1 + segmentWidth2 / 4, 350 + currentAmplitude2, // Control point below
         x2, 350                                 // End point on baseline
       );
     }
@@ -158,26 +158,26 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     vertex(0, 400); // Start from the bottom-left corner
 
     // Map drum intensity to amplitude of wave
-    let amplitude = map(drum, 0, 100, 0, 100); // amplitude for big bumps
+    let amplitude3 = map(drum, 0, 100, 0, 100); // amplitude for big bumps
 
     // Smaller amplitude (every second bump)
-    let smallerAmplitude = amplitude * 0.8; // change wave shape/size
+    let smallerAmplitude3 = amplitude3 * 0.8; // change wave shape/size
 
     // Width of each bump
-    let segmentWidth = 900 / 3; // canvas width, number of bumps
+    let segmentWidth3 = 900 / 3; // canvas width, number of bumps
 
     // Loop to create bumps
     for (let i = 0; i < 3; i++) {
-      let x1 = segmentWidth * (i + 0.5); // Midpoint of each bump 
-      let x2 = segmentWidth * (i + 1);   // End point of each bump
+      let x1 = segmentWidth3 * (i + 0.5); // Midpoint of each bump 
+      let x2 = segmentWidth3 * (i + 1);   // End point of each bump
 
       // Alternate amplitude for every second bump
-      let currentAmplitude = (i % 2 === 1) ? smallerAmplitude : amplitude;
+      let currentAmplitude3 = (i % 2 === 1) ? smallerAmplitude3 : amplitude3;
 
       // BezierVertex to create the bump
       bezierVertex(
-        x1 - segmentWidth / 4, 400 - currentAmplitude, // Control point above
-        x1 + segmentWidth / 4, 400 + currentAmplitude, // Control point below
+        x1 - segmentWidth3 / 4, 400 - currentAmplitude3, // Control point above
+        x1 + segmentWidth3 / 4, 400 + currentAmplitude3, // Control point below
         x2, 400                                 // End point on baseline
       );
     }
@@ -196,27 +196,27 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     vertex(0, 420); // Moved up from 500 to 450
 
     // Map drum intensity to amplitude of wave
-    let amplitude = map(drum, 0, 100, 0, 50); // amplitude for the third set of bumps
+    let amplitude4 = map(drum, 0, 100, 0, 50); // amplitude for the third set of bumps
 
     // Smaller amplitude (every second bump)
-    let smallerAmplitude = amplitude * 1.5; // shape and size of the third waves
+    let smallerAmplitude4 = amplitude4 * 1.5; // shape and size of the third waves
 
     // Width of each bump
-    let segmentWidth = 900 / 2; // Canvas width, number of bumps for third waves
+    let segmentWidth4 = 900 / 2; // Canvas width, number of bumps for third waves
 
     // Loop to create bumps
     for (let i = 0; i < 2; i++) {
-      let x1 = segmentWidth * (i + 0.5); // Midpoint of each bump
-      let x2 = segmentWidth * (i + 1);   // End point of each bump
+      let x1 = segmentWidth4 * (i + 0.5); // Midpoint of each bump 
+      let x2 = segmentWidth4 * (i + 1);   // End point of each bump
 
       // Alternate amplitude for every second bump
-      let currentAmplitude = (i % 2 === 1) ? smallerAmplitude : amplitude;
+      let currentAmplitude4 = (i % 2 === 1) ? smallerAmplitude4 : amplitude4;
 
       // BezierVertex to create the bump
       bezierVertex(
-        x1 - segmentWidth / 4, 420 - currentAmplitude, // Control point above
-        x1 + segmentWidth / 4, 420 + currentAmplitude, // Control point below
-        x2, 420                                 // End point on baseline
+        x1 - segmentWidth4 / 4, 450 - currentAmplitude4, // Control point above
+        x1 + segmentWidth4 / 4, 450 + currentAmplitude4, // Control point below
+        x2, 450                                 // End point on baseline
       );
     }
 
@@ -226,39 +226,111 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     endShape(CLOSE);
   }
 
-    {// Wave 5 (flows up)
+{// Wave 5 (flows up yellow)
+fill(213, 156, 103); // Even lighter blue color
+noStroke();
+
+let waveStartY = height; // Start at the bottom
+let waveEndY = -150; // End position above the canvas (adjust as needed)
+let waveSpeedFactor = 8; // Increase this value to make the wave move faster
+
+let moveStartTime = 78; // Start moving at 1:15 (75 seconds)
+let waveY = waveStartY; // Initial wave position
+
+// Check if the current elapsed time has reached 1:15 mark to start moving the wave
+if (elapsedSeconds >= moveStartTime) {
+  // Calculate adjusted lerpAmount to gradually move the wave up after 1:15
+  let adjustedLerpAmount = min((elapsedSeconds - moveStartTime) / (totalDurationSeconds / waveSpeedFactor), 1); 
+  waveY = lerp(waveStartY, waveEndY, adjustedLerpAmount); // Gradually move the wave up
+}
+
+beginShape();
+vertex(0, waveY); // Start at the bottom-left corner (moving up with waveY)
+
+// Map drum intensity to amplitude of wave
+let amplitude = map(drum, 0, 100, 0, 150); // Adjust amplitude as needed
+
+// Smaller amplitude (every second bump)
+let smallerAmplitude = amplitude * 1.5; // Shape and size of the waves
+
+// Width of each bump
+let segmentWidth = 900 / 2; // Canvas width, number of bumps for waves
+
+// Loop to create bumps
+for (let i = 0; i < 2; i++) {
+  let x1 = segmentWidth * (i + 0.5); // Midpoint of each bump
+  let x2 = segmentWidth * (i + 1);   // End point of each bump
+
+  // Alternate amplitude for every second bump
+  let currentAmplitude = (i % 2 === 1) ? smallerAmplitude : amplitude;
+
+  // BezierVertex to create the bump
+  bezierVertex(
+    x1 - segmentWidth / 4, waveY - currentAmplitude, // Control point above (moving up with waveY)
+    x1 + segmentWidth / 4, waveY + currentAmplitude, // Control point below (moving up with waveY)
+    x2, waveY                                 // End point on baseline (moving up with waveY)
+  );
+}
+
+// Close the shape to fill under the wave
+vertex(900, height); // Bottom-right corner of the canvas
+vertex(0, height); // Bottom-left corner of the canvas
+endShape(CLOSE);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {// Wave 5 (flows up)
     fill(164, 217, 231); // Even lighter blue color
     noStroke();
-  
+
     let waveStartY = height; // Start at the bottom
-    let waveEndY = -150; // End position above the canvas (adjust as needed)
+    let waveEndY = 200; // End position above the canvas (adjust as needed)
     let waveSpeedFactor = 10; // Increase this value to make the wave move faster
-  
-    // Adjust lerpAmount to make the wave move up faster
-    let adjustedLerpAmount = min(elapsedSeconds / (totalDurationSeconds / waveSpeedFactor), 1); 
-  
-    let waveY = lerp(waveStartY, waveEndY, adjustedLerpAmount); // Gradually move the wave up
-  
+
+    let moveStartTime = 75; // Start moving at 1:15 (75 seconds)
+    let waveY = waveStartY; // Initial wave position
+
+    // Check if the current elapsed time has reached 1:15 mark to start moving the wave
+    if (elapsedSeconds >= moveStartTime) {
+      // Calculate adjusted lerpAmount to gradually move the wave up after 1:15
+      let adjustedLerpAmount = min((elapsedSeconds - moveStartTime) / (totalDurationSeconds / waveSpeedFactor), 1); 
+      waveY = lerp(waveStartY, waveEndY, adjustedLerpAmount); // Gradually move the wave up
+    }
+
     beginShape();
     vertex(0, waveY); // Start at the bottom-left corner (moving up with waveY)
-  
+
     // Map drum intensity to amplitude of wave
     let amplitude = map(drum, 0, 100, 0, 150); // Adjust amplitude as needed
-  
+
     // Smaller amplitude (every second bump)
     let smallerAmplitude = amplitude * 1.5; // Shape and size of the waves
-  
+
     // Width of each bump
     let segmentWidth = 900 / 2; // Canvas width, number of bumps for waves
-  
+
     // Loop to create bumps
     for (let i = 0; i < 2; i++) {
       let x1 = segmentWidth * (i + 0.5); // Midpoint of each bump
       let x2 = segmentWidth * (i + 1);   // End point of each bump
-  
+
       // Alternate amplitude for every second bump
       let currentAmplitude = (i % 2 === 1) ? smallerAmplitude : amplitude;
-  
+
       // BezierVertex to create the bump
       bezierVertex(
         x1 - segmentWidth / 4, waveY - currentAmplitude, // Control point above (moving up with waveY)
@@ -266,12 +338,12 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
         x2, waveY                                 // End point on baseline (moving up with waveY)
       );
     }
-  
+
     // Close the shape to fill under the wave
     vertex(900, height); // Bottom-right corner of the canvas
     vertex(0, height); // Bottom-left corner of the canvas
     endShape(CLOSE);
-    }
+  }
 
 
 
