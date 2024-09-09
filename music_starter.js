@@ -16,7 +16,6 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
   let MyDarkBlue = color(7, 72, 94); // dark blue
   let MyLightBlue = color(175, 230, 250); // light blue
-
   let MyDarkBlueL = color(8, 84, 110)
   let MyLightBlueL = color(182, 232, 250)
 
@@ -34,14 +33,14 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
   {// Background lines
     strokeWeight(20);
-    let drumMap = map(drum, 0, 100, 1, 12);// number of lines
+    let bassMap = map(bass, 0, 100, 1, 16)// number of lines
     let lengthOfLine = 900;
     let lineStart = 0;// x position
     let lineEnd = lineStart + lengthOfLine;
     stroke(lineColour, 80, 80);
 
     // Draw lines
-    for (let i = 1; i <= drumMap; i++) {
+    for (let i = 1; i <= bassMap; i++) {
       let lineStep = i * 24; // space between lines
       line(lineStart, lineStep, lineEnd, lineStep);//draws the lines
     }
@@ -436,6 +435,49 @@ endShape(CLOSE);
     endShape(CLOSE);
   }
 
+
+{// Feet
+  let startTime = 90; // 1:30 in seconds
+  let endTime = 150; // 2:30 in seconds
+  let fadeStartTime = 157; // 2:37 in seconds
+  let totalFeet = 16; // Number of feet
+  let displayInterval = (endTime - startTime) / totalFeet; // Time between each foot appearing
+  let fadeDuration = (totalDurationSeconds - fadeStartTime) / totalFeet; // Time for each foot to fade
+  
+  if (elapsedSeconds >= startTime) {
+    // Foot size constants (same size for all feet)
+    let footWidth = 35;
+    let footHeight = 22;
+    
+    // X positions evenly spaced across the canvas width (900)
+    let xPositions = [
+      0, 60, 120, 180, 240, 300, 360, 420, 480, 540, 600, 660, 720, 780, 840, 900
+    ];
+
+    // Y positions alternate between two values to simulate a walking pattern
+    let yPositions = [90, 110]; // Feet alternate between y = 90 and y = 110
+
+    // Draw footsteps based on elapsed time
+    for (let i = 0; i < totalFeet; i++) {
+      if (elapsedSeconds >= startTime + i * displayInterval) {
+        
+        // Calculate the transparency (alpha) based on the fade start time
+        let alpha = 255; // Fully visible
+        if (elapsedSeconds >= fadeStartTime + i * fadeDuration) {
+          alpha = map(elapsedSeconds, fadeStartTime + i * fadeDuration, totalDurationSeconds, 255, 0);
+          alpha = constrain(alpha, 0, 255); // Make sure alpha stays within 0-255 range
+        }
+
+        // Set the fill with the calculated alpha
+        fill(162, 91, 47, alpha);
+
+        // Alternate between the two y positions for left-right step pattern
+        let yPosition = yPositions[i % 2]; 
+        ellipse(xPositions[i], yPosition, footWidth, footHeight);
+      }
+    }
+  }
+}
 
 
 
