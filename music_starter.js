@@ -31,20 +31,21 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
   let lineColour = lerpColor(MyDarkBlueL, MyLightBlueL, lerpAmount);
 
-  {// Background lines
-    strokeWeight(20);
-    let bassMap = map(bass, 0, 100, 1, 16)// number of lines
-    let lengthOfLine = 900;
-    let lineStart = 0;// x position
-    let lineEnd = lineStart + lengthOfLine;
-    stroke(lineColour, 80, 80);
+{// Background lines - VOCAL
+  strokeWeight(20);
+  let vocalMap = map(vocal, 0, 100, 1, 18) // number of lines
+  let lengthOfLine = 900;
+  let lineStart = 0; // x position
+  let lineEnd = lineStart + lengthOfLine;
+  stroke(lineColour, 80, 80);
 
-    // Draw lines
-    for (let i = 1; i <= bassMap; i++) {
-      let lineStep = i * 24; // space between lines
-      line(lineStart, lineStep, lineEnd, lineStep);//draws the lines
-    }
+  // Draw lines
+  for (let i = 1; i <= vocalMap; i++) {
+    let lineStep = height - (i * 24); // Calculate line position from bottom
+    line(lineStart, lineStep, lineEnd, lineStep); // Draws the lines
   }
+}
+
 
   {// Draws sun
     // Move sun from start to end position
@@ -60,7 +61,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     }
   }
 
-  {// Cloud
+  {// Cloud - OTHER
     beginShape();
     fill(255);
     noStroke();
@@ -68,8 +69,8 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     bezierVertex(354, 158, 434, 185, 456, 142);
     bezierVertex(482, 175, 528, 161, 519, 138);
     bezierVertex(539, 155, 604, 154, 560, 105);
-    bezierVertex(572, 58, 491, vocal, 434, 105);
-    bezierVertex(419, 61, 363, vocal, 404, 117);
+    bezierVertex(572, 58, 491, other, 434, 105);
+    bezierVertex(419, 61, 363, other, 404, 117);
     endShape();
   }
 
@@ -111,7 +112,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     endShape(CLOSE);
   }
 
-  {// Wave 2
+  {// Wave 2 - DRUM
     fill(24, 113, 135); // Light blue color
     noStroke();
 
@@ -149,7 +150,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     endShape(CLOSE);
   }
 
-  {// Wave 3
+  {// Wave 3 - DRUM
     fill(122, 201, 221); // Dark blue color
     noStroke();
 
@@ -187,7 +188,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     endShape(CLOSE);
   }
 
-  {// Wave 4
+  {// Wave 4 - DRUM
     fill(164, 217, 231); // Even lighter blue color
     noStroke();
 
@@ -226,7 +227,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   }
 
 {// Wave 4.5 (flows up yellow)
-fill(213, 156, 103); // Even lighter blue color
+fill(213, 156, 103); // sand yellow
 noStroke();
 
 let waveStartY = height + 10; // Start at the bottom
@@ -276,6 +277,56 @@ vertex(900, height); // Bottom-right corner of the canvas
 vertex(0, height); // Bottom-left corner of the canvas
 endShape(CLOSE);
 }
+
+
+
+{// Sand particles - BASS
+  // Time when particles appear
+  let particleStartTime = 86; 
+
+  // Only draw the particles after 1.25 minutes
+  if (elapsedSeconds >= particleStartTime) {
+
+    if (typeof sandParticles === 'undefined') {
+      sandParticles = [];
+      let numParticles = 100;
+      let width = 900;  
+      let height = 200; 
+
+      // Generate particles only once
+      for (let i = 0; i < numParticles; i++) {
+        let x = random(0, width);  // Random x position within the given width
+        let y = random(0, height); // Random y position within the given height
+        sandParticles.push({ x, y, opacity: random(50, 255) }); // Random initial opacity for each particle
+      }
+    }
+
+    let bassMap = map(bass, 0, 100, 0, 255); // opacity control
+    
+    for (let i = 0; i < sandParticles.length; i++) {
+      let { x, y, opacity } = sandParticles[i];
+      
+      // Calculate final opacity
+      let finalOpacity = map(bassMap, 0, 255, opacity, 0); // Opacity decreases with 'bass' increasing
+      
+      // Calculate particle size
+      let minSize = 1; // Minimum size
+      let maxSize = 10; // Maximum size
+      let finalSize = map(bassMap, 0, 255, minSize, maxSize); // Size increases with 'bass'
+
+      fill(128, 86, 44, finalOpacity); // Brown color with opacity
+      noStroke();
+      ellipse(x, y, finalSize, finalSize); 
+    }
+  }
+}
+
+
+
+
+
+
+
 
 
   {// Wave 5 (flows up)
@@ -445,16 +496,16 @@ endShape(CLOSE);
   let fadeDuration = (totalDurationSeconds - fadeStartTime) / totalFeet; // Time for each foot to fade
   
   if (elapsedSeconds >= startTime) {
-    // Foot size constants (same size for all feet)
+    // Foot size)
     let footWidth = 35;
     let footHeight = 22;
     
-    // X positions evenly spaced across the canvas width (900)
+    // X positions
     let xPositions = [
       0, 60, 120, 180, 240, 300, 360, 420, 480, 540, 600, 660, 720, 780, 840, 900
     ];
 
-    // Y positions alternate between two values to simulate a walking pattern
+    // Y positions alternate simulate a walking pattern
     let yPositions = [90, 110]; // Feet alternate between y = 90 and y = 110
 
     // Draw footsteps based on elapsed time
@@ -468,7 +519,7 @@ endShape(CLOSE);
           alpha = constrain(alpha, 0, 255); // Make sure alpha stays within 0-255 range
         }
 
-        // Set the fill with the calculated alpha
+      
         fill(162, 91, 47, alpha);
 
         // Alternate between the two y positions for left-right step pattern
